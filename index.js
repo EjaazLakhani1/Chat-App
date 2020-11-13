@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         socket.emit('user-connected', person + " (YOU)");
         socket.broadcast.emit('user-connected', person);
         for (let i = 0; i < messages.length; ++i) {
-            io.sockets.emit('load message', messages[i]);
+            socket.emit('load message', messages[i]);
         }
     }) 
 
