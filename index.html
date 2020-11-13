@@ -34,7 +34,7 @@
         var userColor = '#000000'
         var tag = "#"
 
-        const name = prompt("What is your name?");
+        const name = 'User'
         socket.emit('new-user', name)
              
 
@@ -55,7 +55,8 @@
             socket.on('chat message', function(data){
                 var msg = data.message;
                 var clr = data.textcolor;
-                $('#messages').prepend($('<li>').text(msg)).css('color', clr).css('font-weight', 'bold');
+                var fontweight = data.fontweight
+                $('#messages').prepend($('<li>').text(msg)).css('color', clr).css('font-weight', fontweight);
       
             });
 
