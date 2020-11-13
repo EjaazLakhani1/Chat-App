@@ -13,4 +13,4 @@ Chat features
 3) Your messages in chat have the extra (you) after the username 
 4) To change the color of textst in chat type /color <RRGGBB>
 5) Certain Emojis are supported including :) :( :o
-6) If a user joins late all messages in chat will be displayed (up to the most recent 200 messages)
+6) If a user joins late all messages in chat will be displayed 
