@@ -29,12 +29,11 @@ io.on('connection', (socket) => {
     socket.on('new-user',(name) => {
         people.push[name];
         users[socket.id] = name;
-        person = name;
+        person = name + Math.floor(Math.random() * 100);
         socket.emit('user-connected', person + " (YOU)");
         socket.broadcast.emit('user-connected', person);
         for (let i = 0; i < messages.length; ++i) {
-            socket.emit('load message', messages[i]);
-            
+            socket.emit('load message', messages[i]);    
         }
         for (let i = 0; i < people.length; ++i) {
             socket.emit('user-connected', people[i]);
@@ -77,8 +76,8 @@ io.on('connection', (socket) => {
             var mess = new Date().toLocaleTimeString() + "    " + person + ":  " + msg;
             var selfmess = new Date().toLocaleTimeString() + "    " + person + " (You):  " + msg;
             var mr = mess;
-            socket.emit('chat message', {message: selfmess, textcolor: clr})
-            socket.broadcast.emit('chat message', {message: mess, textcolor: clr})
+            socket.emit('chat message', {message: selfmess, textcolor: clr, fontweight: 'bold'})
+            socket.broadcast.emit('chat message', {message: mess, textcolor: clr, fontweight: 'normal'})
             messages.push(mr);
         }
      
