@@ -34,6 +34,10 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('user-connected', person);
         for (let i = 0; i < messages.length; ++i) {
             socket.emit('load message', messages[i]);
+            
+        }
+        for (let i = 0; i < people.length; ++i) {
+            socket.emit('user-connected', people[i]);
         }
     }) 
 
@@ -52,6 +56,8 @@ io.on('connection', (socket) => {
                 }
                 else {
                     person = str;
+                    socket.emit('user-connected', person + " (YOU)");
+                    socket.broadcast.emit('user-connected', person);
                 }
             }
             if (msg.startsWith(colourCmd)) {
@@ -67,6 +73,7 @@ io.on('connection', (socket) => {
                 msg = msg.replace(wow,wowEmoji);
                 msg = msg.replace(frown,frownEmoji);
             }
+            people.push(person);
             var mess = new Date().toLocaleTimeString() + "    " + person + ":  " + msg;
             var selfmess = new Date().toLocaleTimeString() + "    " + person + " (You):  " + msg;
             var mr = mess;
@@ -84,9 +91,7 @@ io.on('connection', (socket) => {
             }
         }
         delete users[socket.id]
-        socket.on('new-user',(name) => {
-            socket.broadcast.emit('user-connected', person);
-        });
+        socket.broadcast.emit('user-connected', people);
     });
 
 });
