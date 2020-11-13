@@ -34,21 +34,9 @@
         var userColor = '#000000'
         var tag = "#"
 
-              let used = true;
-              console.log(people);
-              while (used) {
-                const name = prompt("What is your name?");
-                if (people.includes(name)) {
-                  used = true;
-                }
-                else {
-                  people.push(name);
-                  used = true;
-                  socket.emit('new-user', name)
-                  break;
-                }
-              }
-              
+        const name = prompt("What is your name?");
+        socket.emit('new-user', name)
+             
 
             $('form').submit(function(e) {
                 e.preventDefault(); // prevents page reloading
